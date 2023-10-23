@@ -25,4 +25,4 @@ jobs:
       run: dotnet build $GITHUB_WORKSPACE/Calculator/Calculator.sln
 
     - name: Test
-      run: dotnet test $GITHUB_WORKSPACE/Test/Test.csproj
+      run: dotnet test $GITHUB_WORKSPACE/CalculatorTest/Test.csproj
