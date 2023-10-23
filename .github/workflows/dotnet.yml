@@ -18,7 +18,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1.x
 
     - name: Setup NuGet
-      uses:  nuget/setup- nuget@v1.x
+      uses:  nuget/setup-nuget@v1.x
 
     - name: Restore nuget pack
       run: nuget restore Calculator.sln
