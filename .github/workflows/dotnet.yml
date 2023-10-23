@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
@@ -21,7 +21,7 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --configuration Release ../Calculator/Calculator.csproj
+      run: dotnet build --configuration Release ./Calculator.csproj
 
     - name: Test
       run: dotnet test
