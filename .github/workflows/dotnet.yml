@@ -18,8 +18,11 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+    - name: Restore dependencies
+      run: dotnet restore $GITHUB_WORKSPACE/Calculator/Calculator.sln
+
     - name: Build
-      run: dotnet build ../../Calculator/Calculator.sln
+      run: dotnet build $GITHUB_WORKSPACE/Calculator/Calculator.sln
 
     - name: Test
-      run: dotnet test ../../CalculatorTest/Test.csproj
+      run: dotnet test $GITHUB_WORKSPACE/Test/Test.csproj
