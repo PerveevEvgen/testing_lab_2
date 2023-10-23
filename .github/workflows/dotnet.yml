@@ -1,27 +1,28 @@
-name:  CI
+name: CI
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Setup ms-build
-      uses: microsoft/setup-msbuild@v1.1
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v2.x
+      with:
+        dotnet-version: 6.0
 
-    - name: Setup NuGet
-      uses:  nuget/setup-nuget@v1.1
-
-    - name: Restore nuget pack
-      run: nuget restore .\Calculator.sln
+    - name: Restore dependencies
+      run: dotnet restore
 
     - name: Build
-      run: msbuild .\Calculator.sln
+      run: dotnet build ./../Calculator/Calculator.sln
+
+    - name: Test
+      run: dotnet test ./../CalculatorTest/Test.csproj
