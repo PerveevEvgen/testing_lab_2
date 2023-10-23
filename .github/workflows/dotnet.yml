@@ -3,7 +3,7 @@ name: .NET Core CI
 on:
   push:
     branches:
-      - main  # «м≥н≥ть г≥лку на ту, €ку ви хочете використовувати
+      - master
 
 jobs:
   build:
@@ -16,7 +16,7 @@ jobs:
     - name: Set up .NET Core
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 6.0  # «м≥н≥ть верс≥ю .NET Core, €кщо потр≥бно
+        dotnet-version: 6.0
 
     - name: Restore dependencies
       run: dotnet restore
