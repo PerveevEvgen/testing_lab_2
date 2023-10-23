@@ -1,0 +1,28 @@
+name: .NET Core CI
+
+on:
+  push:
+    branches:
+      - main  # «м≥н≥ть г≥лку на ту, €ку ви хочете використовувати
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0  # «м≥н≥ть верс≥ю .NET Core, €кщо потр≥бно
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Test
+      run: dotnet test
