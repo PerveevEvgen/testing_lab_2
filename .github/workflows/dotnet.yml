@@ -21,7 +21,7 @@ jobs:
       uses:  nuget/setup-nuget@v1.1
 
     - name: Restore nuget pack
-      run: nuget restore ..\Calculator\Calculator.sln
+      run: nuget restore .\Calculator.sln
 
     - name: Build
-      run: msbuild ..\Calculator\Calculator.sln
+      run: msbuild .\Calculator.sln
