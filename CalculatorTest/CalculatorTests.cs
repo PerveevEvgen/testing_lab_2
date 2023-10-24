@@ -10,9 +10,9 @@ namespace CalculatorTest
         public void WriteFileTest()
         {
             string expr = "1 + 1";
-            var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", expr);
+            var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", expr);
             calc.WriteFile();
-            bool isWritten = File.Exists("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\test.txt");
+            bool isWritten = File.Exists(".\\test.txt");
             Assert.IsTrue(isWritten);
             Assert.AreEqual(expr, calc.ReadFile());
 
@@ -22,11 +22,11 @@ namespace CalculatorTest
         public void WriteResFileTest()
         {
             string expr = "1 + 1";
-            var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", expr);
+            var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", expr);
             calc.WriteFile();
             int res = calc.CalculateExpression(expr);
             calc.WriteResFile();
-            bool isWritten = File.Exists("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\result.txt");
+            bool isWritten = File.Exists(".\\result.txt");
             Assert.IsTrue(isWritten);
             Assert.AreEqual(res, 2);
         }
@@ -35,7 +35,7 @@ namespace CalculatorTest
         public void readFileTest()
         {
             string expr = "3 - 5 + 6 / 2";
-            var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", expr);
+            var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", expr);
             calc.WriteFile();
             string resultOfReading = calc.ReadFile();
             Assert.AreEqual(expr, resultOfReading);
@@ -58,7 +58,7 @@ namespace CalculatorTest
             List<int> expected = new List<int> { 2, 22, 21, 3, 33, -1, -1};
             foreach (var item in data)
             {
-                var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", item.Value);
+                var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", item.Value);
                 calc.WriteFile();
                 int result = calc.CalculateExpression(item.Value);
                 calc.WriteResFile();
@@ -71,7 +71,7 @@ namespace CalculatorTest
         {
             char[] operators = new char[] { '-', '+', '/', '*' };
             string expr = "3 - 5 + 6 / 2";
-            var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", expr);
+            var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", expr);
             foreach (var item in operators)
             {
                 Assert.AreEqual(calc.IsOperator(item),true);
@@ -82,7 +82,7 @@ namespace CalculatorTest
         public void GetPrecedenceTest()
         {
             string expr = "3 - 5 + 6 / 2";
-            var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", expr);
+            var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", expr);
             char[] operators = new char[] { '-', '+', '/', '*', '{','&' };
             int[] expected = new int[] { 1, 1, 2, 2, 0, 0 };
             for (int i = 0; i < operators.Length; i++)
@@ -94,7 +94,7 @@ namespace CalculatorTest
         public void HasHigherPrecedenceTest()
         {
             string expr = "3 - 5 + 6 / 2";
-            var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", expr);
+            var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", expr);
             Assert.IsTrue(calc.HasHigherPrecedence('*', '+'));
             Assert.IsFalse(calc.HasHigherPrecedence('-', '/'));
         }
@@ -107,7 +107,7 @@ namespace CalculatorTest
             operands.Push(4);
             char op = '+';
             string expr = "3 - 5 + 6 / 2";
-            var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", expr);
+            var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", expr);
             calc.ApplyOperator(operands, op);
             Assert.AreEqual(operands.Peek(), 7);
         }
@@ -120,7 +120,7 @@ namespace CalculatorTest
             char op = '/';
 
             string expr = "3 - 5 + 6 / 2";
-            var calc = new Calculator.Calculator("C:\\Users\\jperv\\Desktop\\Testing_labs\\CalculatorTest\\", "test.txt", "result.txt", expr);
+            var calc = new Calculator.Calculator(".\\", "test.txt", "result.txt", expr);
             calc.ApplyOperator(operands, op);
 
             Assert.AreEqual(operands.Peek(), -1);
